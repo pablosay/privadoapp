@@ -1,0 +1,46 @@
+<div class="flex min-h-screen">
+    
+    <div id="sidebar" class="surface-0 shadow-6 min-h-screen" [class.sidebar-visible]="sidebarVisible" [class.sidebar-hidden]="!sidebarVisible">
+        
+        <div class="w-full">
+            
+            <div class="ml-2 mr-2 col">
+                
+                <div class="flex align-items-center justify-content-center mb-3">
+                    
+                    <div>
+                        
+                        <h1 class="text-white">PRIVADO 23</h1>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="flex align-items-center justify-content-center mb-3">
+                    
+                    <div class="flex justify-content-center w-full align-items-center">
+                        
+                        <p-menu [model]="items" class="w-full"></p-menu>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <div id="content" class="surface-card shadow-6 min-h-screen" [class.content-visible]="sidebarVisible" [class.content-sidebar-hidden]="!sidebarVisible">
+
+        <div class="w-full mt-4 ml-4">
+            
+            <p-button icon="pi pi-bars" (click)="toggleSideBar()"></p-button>
+            
+        </div>
+        
+        <router-outlet></router-outlet>
+        
+    </div>
+</div>

@@ -1,0 +1,25 @@
+
+.sidebar-visible {
+    width: 25%; 
+    transition: width 0.3s; 
+  }
+  
+  /* Styles for the sidebar when it's hidden */
+  .sidebar-hidden {
+    display: none; 
+    width: 0; 
+  }
+
+.content-visible {
+
+  width: 75%;
+
+  transition: width 0.3s;
+    
+}
+
+.content-sidebar-hidden {
+
+  width: 100%;
+
+}

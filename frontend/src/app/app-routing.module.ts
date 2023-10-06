@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { LogEntriesComponent } from './log-entries/log-entries.component';
+import { RegisterAuthorizedComponent } from './register-authorized/register-authorized.component';
+import { IntrudersComponent } from './intruders/intruders.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
@@ -10,7 +14,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'main', component: MainComponent, children: [
 
-    {path: 'config', component: ConfigurationComponent}
+    {path: 'config', component: ConfigurationComponent},
+    {path: 'logentries', component: LogEntriesComponent},
+    {path: 'register', component: RegisterAuthorizedComponent},
+    {path: 'intruders', component: IntrudersComponent},
+    {path: 'welcome', component: WelcomeComponent}
 
   ]}
 ];

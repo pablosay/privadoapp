@@ -1,0 +1,83 @@
+<div class = "flex flex-column align-items-center ml-2 mr-2 mt-2 mb-2 min-h-screen max-h-screen overflow-auto">
+
+    <div class="mt-2 mb-2  ml-2 mr-2 surface-0 p-4 shadow-4 border-round w-full">
+        
+        <div>
+
+            <div class="card">
+
+                <p-table #dt1 [value]="spoofs" [paginator]="true" [rows]="10">
+
+                    <ng-template pTemplate="header">
+
+                        <tr>
+                            
+                            <th> 
+                                Hour 
+                                <p-columnFilter type="text" field="hour" display="menu"></p-columnFilter>
+                            </th>
+
+                            <th> 
+                                Minute
+                                <p-columnFilter type="text" field="minute" display="menu"></p-columnFilter> 
+
+                            </th>
+
+                            <th> 
+                                Date
+                                <p-columnFilter type="text" field="date" display="menu"></p-columnFilter>
+                            
+                            </th>
+
+                            <th> 
+                                Month
+                                <p-columnFilter type="text" field="month" display="menu"></p-columnFilter> 
+                            
+                            </th>
+
+                            <th> 
+                                Year 
+                                <p-columnFilter type="text" field="year" display="menu"></p-columnFilter>
+
+                            </th>
+
+                            <th>
+
+                                Image captured
+
+                            </th>
+
+                        </tr>
+
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-entry>
+
+                        <tr>
+
+                            <td> {{entry.hour}} </td>
+
+                            <td> {{entry.minute}} </td>
+
+                            <td> {{entry.date}} </td>
+
+                            <td> {{entry.month}} </td>
+
+                            <td> {{entry.year}} </td>
+
+                            <td> <p-button icon="pi pi-eye" styleClass="p-button-success ml-2" label="View"></p-button>  </td>
+
+                        </tr>
+
+                    </ng-template>
+
+                </p-table>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
+<router-outlet> </router-outlet>

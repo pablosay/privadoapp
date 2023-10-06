@@ -16,7 +16,7 @@ export class LoginComponent {
 
   tryLogin(){
 
-    this.router.navigateByUrl("/main")
+    this.router.navigateByUrl("/main/welcome")
 
   }
 

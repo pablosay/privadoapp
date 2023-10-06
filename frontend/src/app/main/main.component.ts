@@ -20,8 +20,15 @@ export class MainComponent {
     this.items = [
       {
         label: 'Welcome',
-        icon: 'pi pi-fw pi-home'
+        icon: 'pi pi-fw pi-home',
+        routerLink: ['/main/welcome']
       },
+      {
+        label: 'Register',
+        icon: 'pi pi-fw pi-user',
+        routerLink: ['/main/register']
+      }
+      ,
       {
         label: 'Configuration',
         icon: 'pi pi-fw pi-cog',
@@ -29,15 +36,18 @@ export class MainComponent {
       },
       {
         label: 'Log entries',
-        icon: 'pi pi-fw pi-book'
+        icon: 'pi pi-fw pi-book',
+        routerLink: ['/main/logentries']
       },
       {
         label: 'Intruders',
-        icon: 'pi pi-fw pi-ban'
+        icon: 'pi pi-fw pi-ban',
+        routerLink: ['/main/intruders']
       },
       {
         label: 'Log out',
-        icon: 'pi pi-fw pi-sign-out'
+        icon: 'pi pi-fw pi-sign-out',
+        routerLink: ['/login']
       }
     ];
 

@@ -22,6 +22,9 @@ export class ConfigurationComponent {
 
     this.names.push(new AuthorizedName("Pablo"));
     this.names.push(new AuthorizedName("Suzanne"));
+    this.names.push(new AuthorizedName("Suzanne"));
+    this.names.push(new AuthorizedName("Suzanne"));
+    this.names.push(new AuthorizedName("Suzanne"));
 
   }
 
@@ -31,6 +34,12 @@ export class ConfigurationComponent {
     if (indexToRemove !== -1) {
         this.names.splice(indexToRemove, 1);
     }
+
+  }
+
+  setVigilanceTimeIfIntruder(){
+
+    
 
   }
 

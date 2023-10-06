@@ -20,6 +20,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { LogEntriesComponent } from './log-entries/log-entries.component';
+import { RegisterAuthorizedComponent } from './register-authorized/register-authorized.component';
+import { IntrudersComponent } from './intruders/intruders.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
     LoginComponent,
     MainComponent,
     ConfigurationComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    LogEntriesComponent,
+    RegisterAuthorizedComponent,
+    IntrudersComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-
+<p-messages [(value)]="messages" [enableService]="false" [closable]="true" [hideTransitionOptions]="'500ms'" [showTransitionOptions]="'500ms'"></p-messages>
 
 <div class = "flex flex-column align-items-center ml-2 mr-2 mt-2 mb-2 min-h-screen max-h-screen overflow-auto">
 
@@ -12,10 +12,16 @@
             </div>
             
             <div>
+
+                <form [formGroup]="updateIpForm" (ngSubmit)="setIpForProcessingServer()">
+
+                    <input id="ipfield" type="text" pInputText class="w-full mb-3" placeholder="New IP" formControlName = "ip">
                 
-                <input id="ipfield" type="text" pInputText class="w-full mb-3">
+                    <button pButton pRipple icon="pi pi-wifi" label="Set" class="w-full" [disabled]="!updateIpForm.valid"></button>
+
+                </form>
                 
-                <button pButton pRipple icon="pi pi-wifi" label="Set" class="w-full" ></button>
+                
                 
             </div>
             
@@ -31,13 +37,19 @@
             <div class="text-left">
                 
                 <div class="text-900 font-medium mb-3"> Current phone number:  </div>
+
             </div>
             
             <div>
+
+                <form [formGroup]="updateWhatsAppNumberForm" (ngSubmit)="setWhatsAppNumber()">
+
+                    <p-inputMask mask="(502) 9999-9999" placeholder="(502) 9999-9999" formControlName = "number" styleClass="w-full mb-3"></p-inputMask>
                 
-                <input id="ipfield" type="text" pInputText class="w-full mb-3">
+                    <button pButton pRipple label="Set"  icon="pi pi-whatsapp" style="width: 100%;" [disabled]="!updateWhatsAppNumberForm.valid"></button>
+
+                </form>
                 
-                <button pButton pRipple label="Set"  icon="pi pi-whatsapp" style="width: 100%;" ></button>
                 
             </div>
             
@@ -56,20 +68,24 @@
             
             <div>
                 
-                <label for="name" class="block text-900 font-medium mb-2"> Range interval by hour </label>
-                
-                <div class = "flex w-full justify-content-center">
+                <label for="name" class="block text-900 font-medium mb-2"> Range interval by hour (24hr) </label>
+
+                <form [formGroup]="updateIntervalForm" (ngSubmit)="setVigilanceTimeIfIntruder()"> 
+
+                    <div class = "flex w-full justify-content-center">
                     
-                    <p-inputMask mask="99:99"  placeholder="xx-xx" styleClass="w-full"></p-inputMask>
-                    
-                    <p> : </p>
-                    
-                    <p-inputMask mask="99:99"  placeholder="xx-xx" styleClass="w-full"></p-inputMask>
-                    
-                    
-                </div>
-                
-                <button pButton pRipple label="Set"  icon="pi pi-clock" style="width: 100%;" ></button>
+                        <p-inputMask mask="99:99"  placeholder="xx:xx" styleClass="w-full" formControlName = "start"></p-inputMask>
+                        
+                        <p> : </p>
+                        
+                        <p-inputMask mask="99:99"  placeholder="xx:xx" styleClass="w-full" formControlName = "end"></p-inputMask>
+                        
+                        
+                    </div>
+
+                    <button pButton pRipple label="Set"  icon="pi pi-clock" style="width: 100%;" [disabled]="!updateIntervalForm.valid"></button>
+
+                </form>
                 
             </div>
             
@@ -93,7 +109,7 @@
                             <div class="flex">
                                 
                                 <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search by name" />
-                                
+
                             </div>
                         </ng-template>
 
@@ -113,7 +129,7 @@
 
                             <tr>
 
-                                <td> {{person.name}} </td>
+                                <td class="overflow-x-scroll"> {{person.name}} </td>
 
                                 <td> 
                                     <p-button icon="pi pi-trash" styleClass="p-button-danger mr-2" label="Delete" (click) = "removeName(person.name)"></p-button> 

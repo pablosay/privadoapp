@@ -2,6 +2,7 @@
 @import "primeicons/primeicons.css";
 
 .p-menu {
+
     padding: 0.25rem 0;
     background: #1f2d40;
     color: rgba(255, 255, 255, 0.87);
@@ -9,6 +10,25 @@
     border-radius: 3px;
     width: 100%;
 }
-.p-hidden-accessible {
-    display: none;
+
+@font-face {
+    font-family: 'quicksand';
+    src: url('./../src/assets/Fonts/Quicksand-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'slabo';
+    src: url('./../src/assets/Fonts/Slabo27px-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url('./../src/assets/Fonts/RobotoSlab-VariableFont_wght.ttf');
+}
+
+
+* {
+
+    font-family: 'quicksand';
+    font-weight: bold;
 }

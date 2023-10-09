@@ -51,3 +51,19 @@ export class Spoof {
     }
 
 }
+
+export class Tech {
+
+    name: string;
+    filename:string;
+    description: string;
+
+    constructor(name:string, filename:string, description:string){
+
+        this.name = name
+        this.filename = filename
+        this.description = description
+
+    }
+
+}

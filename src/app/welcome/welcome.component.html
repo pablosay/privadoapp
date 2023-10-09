@@ -1,2 +1,85 @@
-<p>welcome works!</p>
+<div class = "flex surface-0 flex-column align-items-center ml-4 mr-4 mt-2 mb-4 min-h-screen max-h-screen overflow-auto border-round">
+
+    <div class="flex-column align-items-center justify-content-center mb-4 mt-4 w-full">
+
+        <div class="flex justify-content-center align-items-center mt-2 mb-2">
+
+            <img src="../../assets/images/logo.svg" width="10%" height="10%">
+
+            <label class="text-left text-7xl"> Privado 23</label>
+
+        </div>
+
+        <div class="w-full mb-3">
+
+            <label class="text-left ml-4"> Hardware used</label>
+
+            <p-carousel [value]="hardware" [numVisible]="2" [numScroll] = "3"[showIndicators] = "false" [circular]="true" [responsiveOptions]="responsiveOptions">
+
+                <ng-template let-tech pTemplate="item">
+
+                    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+
+                        <div class="mb-3">
+
+                            <img src="../../assets/images/{{tech.filename}}" style="width: 60%; height: 170px;"/>
+
+                        </div>
+
+                        <div>
+
+                            <label class="mb-1" style="font-family: roboto;">{{ tech.name }} </label>
+
+                            <br>
+
+                            <label class="mt-0 mb-3"> {{  tech.description }} </label>
+
+                        </div>
+
+                    </div>
+
+                </ng-template>
+
+            </p-carousel>
+
+        </div>
+
+        <div class="w-full mb-3">
+
+            <label class="text-left ml-4"> Hardware used</label>
+
+            <p-carousel [value]="technologies" [numVisible]="2" [numScroll] = "2"[showIndicators] = "false" [circular]="true" [responsiveOptions]="responsiveOptions">
+
+                <ng-template let-tech pTemplate="item">
+
+                    <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+
+                        <div class="mb-3">
+
+                            <img src="../../assets/images/{{tech.filename}}" style="width: 40%; height: 170px;"/>
+
+                        </div>
+
+                        <div>
+
+                            <label class="mb-1" style="font-family: roboto;">{{ tech.name }} </label>
+
+                            <br>
+
+                            <label class="mt-0 mb-3"> {{  tech.description }} </label>
+
+                        </div>
+
+                    </div>
+
+                </ng-template>
+
+            </p-carousel>
+
+        </div>
+
+    </div>
+
+</div>
+
 <router-outlet></router-outlet>

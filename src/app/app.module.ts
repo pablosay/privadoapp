@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { ButtonModule } from 'primeng/button';
 import {InputTextModule } from 'primeng/inputtext';
-
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
-
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
@@ -23,6 +19,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LogEntriesComponent } from './log-entries/log-entries.component';
 import { RegisterAuthorizedComponent } from './register-authorized/register-authorized.component';
 import { IntrudersComponent } from './intruders/intruders.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CarouselModule } from 'primeng/carousel';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,11 @@ import { IntrudersComponent } from './intruders/intruders.component';
     DropdownModule,
     FormsModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    FileUploadModule,
+    ReactiveFormsModule,
+    CarouselModule,
+    TagModule
   ],
   providers: [],
   bootstrap: [AppComponent]

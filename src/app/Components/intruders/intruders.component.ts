@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Spoof } from 'src/Models/Models';
+import { Spoof } from 'src/app/Models/Models';
 
 @Component({
   selector: 'app-intruders',

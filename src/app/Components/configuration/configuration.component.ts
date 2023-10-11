@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthorizedName } from 'src/Models/Models';
+import { AuthorizedName } from 'src/app/Models/Models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
 

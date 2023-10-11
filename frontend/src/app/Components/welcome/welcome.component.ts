@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tech } from 'src/Models/Models';
+import { Tech } from 'src/app/Models/Models';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',

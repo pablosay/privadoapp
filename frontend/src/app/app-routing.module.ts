@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
-import { ConfigurationComponent } from './configuration/configuration.component';
-import { LogEntriesComponent } from './log-entries/log-entries.component';
-import { RegisterAuthorizedComponent } from './register-authorized/register-authorized.component';
-import { IntrudersComponent } from './intruders/intruders.component';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './Components/login/login.component';
+import { MainComponent } from './Components/main/main.component';
+import { ConfigurationComponent } from './Components/configuration/configuration.component';
+import { LogEntriesComponent } from './Components/log-entries/log-entries.component';
+import { RegisterAuthorizedComponent } from './Components/register-authorized/register-authorized.component';
+import { IntrudersComponent } from './Components/intruders/intruders.component';
+import { WelcomeComponent } from './Components/welcome/welcome.component';
+
 
 
 const routes: Routes = [

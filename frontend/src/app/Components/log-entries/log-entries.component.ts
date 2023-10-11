@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Entry } from 'src/Models/Models';
+import { Entry } from 'src/app/Models/Models'; 
 
 @Component({
   selector: 'app-log-entries',

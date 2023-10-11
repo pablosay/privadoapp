@@ -106,11 +106,13 @@
                     <p-table #dt1 [value]="names" [paginator]="true" [rows]="5" [globalFilterFields]="['name']">
 
                         <ng-template pTemplate="caption">
+
                             <div class="flex">
                                 
                                 <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search by name" />
 
                             </div>
+
                         </ng-template>
 
                         <ng-template pTemplate="header">
@@ -131,8 +133,10 @@
 
                                 <td class="overflow-x-scroll"> {{person.name}} </td>
 
-                                <td> 
-                                    <p-button icon="pi pi-trash" styleClass="p-button-danger mr-2" label="Delete" (click) = "removeName(person.name)"></p-button> 
+                                <td>
+                                    
+                                    <p-button icon="pi pi-trash" styleClass="p-button-danger mr-2" label="Delete" (click) = "removeName(person.name)"></p-button>
+
                                     <p-button icon="pi pi-camera" styleClass="p-button-success ml-2" label="View pictures"></p-button> 
                                     
                                 </td>

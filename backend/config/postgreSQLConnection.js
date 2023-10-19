@@ -12,16 +12,19 @@ const con = new Pool({
   database: process.env.DB,
   password: process.env.PASSWORD_DB,
   port: process.env.PORT_DB,
-  ssl: false
 
 });
 
 con.connect((err) => {
 
   if (err) {
+
     console.error('Error connecting to PostgreSQL:', err);
+
   } else {
+
     console.log('Connected to PostgreSQL database.');
+    
   }
 });
 
@@ -30,33 +33,33 @@ module.exports = con
 /** 
  * 
  * 
+ * 
  * CREATE TABLE authorized_persons (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE
-);
+  );
 
 CREATE TABLE images (
     id SERIAL PRIMARY KEY,
-    person_id INT REFERENCES authorized_persons(id),
+    person_id INT REFERENCES authorized_persons(id) ON DELETE CASCADE,
     image_data BYTEA
 );
 
 CREATE TABLE embeddings (
     embedding_id SERIAL PRIMARY KEY,
-    image_id INT REFERENCES images(id),
-    embedding_data BYTEA
+    image_id INT REFERENCES images(id) ON DELETE CASCADE,
+    embedding_data TEXT
 );
 
 CREATE TABLE entries (
     id SERIAL PRIMARY KEY,
-    person_id INT REFERENCES authorized_persons(id),
+    person_name VARCHAR(255),
     hour VARCHAR(10),
     date VARCHAR(10)
 );
 
 CREATE TABLE intruders (
     id SERIAL PRIMARY KEY,
-    person_id INT REFERENCES authorized_persons(id),
     hour VARCHAR(10),
     date VARCHAR(10),
     image BYTEA

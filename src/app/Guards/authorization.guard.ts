@@ -1,0 +1,64 @@
+import { CanActivateFn, Router } from '@angular/router';
+import { Observable, of, mergeMap } from 'rxjs';
+import { BackendService } from '../Services/backend.service';
+import { inject } from '@angular/core';
+import { Response,RequestsOptionalTokens } from '../Models/Responses';
+
+
+export const authorizationGuard: CanActivateFn = (route, state) => {
+
+  const backend:BackendService = inject(BackendService)
+
+  const router: Router = inject(Router)
+
+  return backend.verifyToken().pipe(mergeMap( (response:Response) => {
+
+    if(response.message == "Token accepted") {
+
+      return of(true)
+
+    } else if(response.message == "Invalidad token"){
+
+      if(sessionStorage.getItem('token') != null && sessionStorage.getItem('refreshToken') != null) {
+
+        return backend.refreshToken(sessionStorage.getItem('refreshToken')!).pipe(mergeMap ((refreshResponse:RequestsOptionalTokens) => {
+
+          if(refreshResponse.message == "Token refreshed") {
+
+            sessionStorage.setItem("token", refreshResponse.authorizationToken!)
+
+            sessionStorage.setItem("refreshToken", refreshResponse.refreshToken!)
+
+            return of(true)
+
+          } else {
+
+            return of(router.createUrlTree([""]))
+
+          }
+
+        }))
+
+      } else {
+
+        return of(router.createUrlTree([""]))
+
+      }
+
+
+    } else if(response.message == "There is no token on the header"){
+
+      return of(router.createUrlTree([""]))
+
+    }
+
+
+    return of(true)
+
+
+  } ))
+
+  
+
+
+};

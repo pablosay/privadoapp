@@ -23,6 +23,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
+import { ReviewPicturesComponent } from './Components/review-pictures/review-pictures.component';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { TagModule } from 'primeng/tag';
     WelcomeComponent,
     LogEntriesComponent,
     RegisterAuthorizedComponent,
-    IntrudersComponent
+    IntrudersComponent,
+    ReviewPicturesComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { TagModule } from 'primeng/tag';
     FileUploadModule,
     ReactiveFormsModule,
     CarouselModule,
-    TagModule
+    TagModule,
+    DataViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

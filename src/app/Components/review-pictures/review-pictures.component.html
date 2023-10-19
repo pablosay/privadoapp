@@ -1,0 +1,71 @@
+<p-messages [(value)]="messages" [enableService]="false" [closable]="true" [hideTransitionOptions]="'500ms'" [showTransitionOptions]="'500ms'"></p-messages>
+
+<div class = "w-full mt-4 ml-4"> 
+
+    <p-button icon="pi pi-arrow-circle-left" label="Return" styleClass="p-button-help p-button-raised" (click) = "return()" ></p-button>
+
+</div>
+
+
+
+<div class = "flex flex-column align-items-center ml-2 mr-2 mt-2 mb-2 min-h-screen max-h-screen overflow-auto w-full">
+
+    <div class = "w-full mb-3 surface-0 flex-column flex align-items-center"  *ngIf = " images!.length < 6 ">
+
+        <div class=" mb-4 mt-2 card flex flex-column justify-content-center align-items-center w-full">
+
+            <div class = "flex-column">
+
+                <h2> Max number of files are 6.</h2>
+
+            </div>
+
+            <p-fileUpload #fileUpload name="myfile[]"  [multiple]="true" accept="image/*" [maxFileSize]="100000000" [fileLimit]="6 - images!.length" [customUpload]="true" (uploadHandler)="uploadFiles($event)">
+
+                <ng-template pTemplate="toolbar">
+
+                    <div class="py-3">Upload maximun {{6 - images!.length}} files</div>
+
+                </ng-template>
+
+                <ng-template let-file pTemplate="file">
+
+                    {{file.name}}
+
+                    <div></div>
+
+                </ng-template>
+
+            </p-fileUpload>
+
+        </div>
+
+    </div>
+
+    <div class = "flex-column flex align-items-center w-full">
+        
+        <div class = "flex surface-0 w-3 shadow-3 align-items-center flex-column mb-4 border-round" *ngFor="let image of images">
+
+            <div class = "mb-3 mt-3 align-items-center flex justify-content-center">
+
+                <img class="ml-2 mr-2" [src] = "displayImage(image.image_data)" width="90%" height="90%" style="border-radius: 1%;"> 
+
+            </div>
+
+            <div class = "w-full mb-3 pl-3 pr-3">
+
+                <p-button icon="pi pi-trash" styleClass="p-button-danger w-full " label="Delete" (click) = "deleteImage(image.id, image.image_data)"></p-button>
+
+            </div>   
+
+        </div>
+
+
+    </div>
+
+    
+
+</div>
+
+
+<router-outlet> </router-outlet>

@@ -1,13 +1,3 @@
-export class AuthorizedName {
-
-    name: string;
-
-    constructor(name: string) {
-        this.name = name
-    }
-
-}
-
 export class Entry {
 
     hour:number;
@@ -63,6 +53,34 @@ export class Tech {
         this.name = name
         this.filename = filename
         this.description = description
+
+    }
+
+}
+
+export class AuthorizedPerson {
+
+    id: number;
+    name:string;
+
+    constructor(id:number, name:string) {
+
+        this.id = id;
+        this.name = name
+
+    }
+
+}
+
+export class ImageInformation {
+
+    id:number;
+    image_data:string;
+
+    constructor(id:number, image_data: string){
+
+        this.id = id
+        this.image_data = image_data
 
     }
 

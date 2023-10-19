@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { BackendService } from 'src/app/Services/backend.service';
 
 @Component({
   selector: 'app-main',
@@ -12,7 +14,7 @@ export class MainComponent {
 
   items: MenuItem[] | undefined;
 
-  constructor(){
+  constructor(private router:Router, private backend: BackendService){
   }
   
   ngOnInit() {
@@ -47,7 +49,32 @@ export class MainComponent {
       {
         label: 'Log out',
         icon: 'pi pi-fw pi-sign-out',
-        routerLink: ['/login']
+        command: ()=> {
+
+          let refreshToken = sessionStorage.getItem("refreshToken") || ""
+
+          if(refreshToken == "") {
+
+            this.router.navigateByUrl("")
+
+          }
+
+          this.backend.logOut(refreshToken).subscribe(response => {
+
+            if(response.message == "Logged out"){
+
+              sessionStorage.removeItem('token');
+
+              sessionStorage.removeItem('refreshToken');
+
+              this.router.navigateByUrl("")
+
+            }
+
+          })
+
+
+        }
       }
     ];
 

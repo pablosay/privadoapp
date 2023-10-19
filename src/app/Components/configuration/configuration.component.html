@@ -10,6 +10,12 @@
                 
                 <div class="text-900 text-2xl font-medium mb-3">Processing server IP</div>
             </div>
+
+            <div class="text-left">
+                
+                <div class="text-900 font-medium mb-3"> Current IP: {{this.currentIp}} </div>
+
+            </div>
             
             <div>
 
@@ -36,7 +42,7 @@
 
             <div class="text-left">
                 
-                <div class="text-900 font-medium mb-3"> Current phone number:  </div>
+                <div class="text-900 font-medium mb-3"> Current phone number: {{this.currentPhoneNumber}} </div>
 
             </div>
             
@@ -65,10 +71,14 @@
                 
                 <div class="text-900 text-2xl font-medium mb-3"> Interval </div>
             </div>
+
+            <div class="text-left">
+                
+                <div class="text-900 font-medium mb-3"> Current vigilance time: From {{this.currentStartVigilanceTime}} to {{this.currentEndVigilanceTime}} </div>
+
+            </div>
             
             <div>
-                
-                <label for="name" class="block text-900 font-medium mb-2"> Range interval by hour (24hr) </label>
 
                 <form [formGroup]="updateIntervalForm" (ngSubmit)="setVigilanceTimeIfIntruder()"> 
 
@@ -95,7 +105,7 @@
             
             <div class="text-center mb-5">
                 
-                <div class="text-900 text-2xl font-medium mb-3"> Authorzied persons </div>
+                <div class="text-900 text-2xl font-medium mb-3"> Authorized persons </div>
                 
             </div>
             
@@ -103,7 +113,7 @@
 
                 <div class="card">
 
-                    <p-table #dt1 [value]="names" [paginator]="true" [rows]="5" [globalFilterFields]="['name']">
+                    <p-table #dt1 [value]="authorizedUsers" [paginator]="true" [rows]="5" [globalFilterFields]="['name']">
 
                         <ng-template pTemplate="caption">
 
@@ -135,9 +145,9 @@
 
                                 <td>
                                     
-                                    <p-button icon="pi pi-trash" styleClass="p-button-danger mr-2" label="Delete" (click) = "removeName(person.name)"></p-button>
+                                    <p-button icon="pi pi-trash" styleClass="p-button-danger mr-2" label="Delete" (click) = "removeName(person.id)"></p-button>
 
-                                    <p-button icon="pi pi-camera" styleClass="p-button-success ml-2" label="View pictures"></p-button> 
+                                    <p-button icon="pi pi-camera" styleClass="p-button-success ml-2" label="View pictures" (click) = "editPictures(person)"></p-button> 
                                     
                                 </td>
 

@@ -1,10 +1,9 @@
 const admin = require('firebase-admin');
-
-const serviceAccount = require('../env/rtdb-pt23-firebase-adminsdk-xkgtx-d9565b547b.json');
+const dotenv = require('dotenv')
 
 admin.initializeApp({
 
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)),
 
   databaseURL: 'https://rtdb-pt23-default-rtdb.firebaseio.com/'
 

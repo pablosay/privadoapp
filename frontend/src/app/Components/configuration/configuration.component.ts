@@ -46,7 +46,7 @@ export class ConfigurationComponent {
     this.messages = []
     
     this.updateIpForm = fb.group({
-      ip: ['', [Validators.required , Validators.pattern('192.168.[0-9]+.[0-9]+')]]
+      ip: ['', [Validators.required ]]
     })
     
     this.updateWhatsAppNumberForm = fb.group({

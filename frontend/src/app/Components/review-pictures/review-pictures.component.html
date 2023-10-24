@@ -10,9 +10,15 @@
 
 <div class = "flex flex-column align-items-center ml-2 mr-2 mt-2 mb-2 min-h-screen max-h-screen overflow-auto w-full">
 
-    <div class = "w-full mb-3 surface-0 flex-column flex align-items-center"  *ngIf = " images!.length < 6 ">
+    <div class = "w-full mb-2">
 
-        <div class=" mb-4 mt-2 card flex flex-column justify-content-center align-items-center w-full">
+        <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf = "progressBarVisible"></p-progressBar >
+
+    </div>
+
+    <div class = "w-6 mb-3 surface-0 flex-column flex align-items-center border-round"  *ngIf = " images!.length < 6 ">
+
+        <div class=" mb-4 mt-2 card flex flex-column justify-content-center align-items-center ">
 
             <div class = "flex-column">
 
@@ -20,7 +26,7 @@
 
             </div>
 
-            <p-fileUpload #fileUpload name="myfile[]"  [multiple]="true" accept="image/*" [maxFileSize]="100000000" [fileLimit]="6 - images!.length" [customUpload]="true" (uploadHandler)="uploadFiles($event)">
+            <p-fileUpload #fileUpload name="myfile[]"  [multiple]="true" accept="image/*" [maxFileSize]="100000000" [fileLimit]="6 - images!.length" [customUpload]="true" (uploadHandler)="uploadFiles($event)" class="mb-2">
 
                 <ng-template pTemplate="toolbar">
 

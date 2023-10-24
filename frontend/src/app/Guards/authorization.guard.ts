@@ -11,23 +11,29 @@ export const authorizationGuard: CanActivateFn = (route, state) => {
 
   const router: Router = inject(Router)
 
+  console.log("Token: ", sessionStorage.getItem('authorizationToken'))
+
   return backend.verifyToken().pipe(mergeMap( (response:Response) => {
 
     if(response.message == "Token accepted") {
+
+      console.log("Debe de llegar aca")
 
       return of(true)
 
     } else if(response.message == "Invalidad token"){
 
-      if(sessionStorage.getItem('token') != null && sessionStorage.getItem('refreshToken') != null) {
+      console.log("Token invalido")
+
+      if(sessionStorage.getItem('authorizationToken') != null && sessionStorage.getItem('refreshToken') != null) {
 
         return backend.refreshToken(sessionStorage.getItem('refreshToken')!).pipe(mergeMap ((refreshResponse:RequestsOptionalTokens) => {
 
           if(refreshResponse.message == "Token refreshed") {
 
-            sessionStorage.setItem("token", refreshResponse.authorizationToken!)
+            sessionStorage.setItem('authorizationToken', refreshResponse.authorizationToken!)
 
-            sessionStorage.setItem("refreshToken", refreshResponse.refreshToken!)
+            sessionStorage.setItem('refreshToken', refreshResponse.refreshToken!)
 
             return of(true)
 

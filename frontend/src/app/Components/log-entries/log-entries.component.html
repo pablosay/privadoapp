@@ -6,7 +6,7 @@
 
             <div class="card">
 
-                <p-table #dt1 [value]="entries" [paginator]="true" [rows]="10" [globalFilterFields]="['name']">
+                <p-table #dt1 [value]="entries" [paginator]="true" [rows]="10" [globalFilterFields]="['person_name']">
 
                     <ng-template pTemplate="caption">
                         <div class="flex">
@@ -34,7 +34,7 @@
                             </th>
 
                             <th> 
-                                Date
+                                Day
                                 <p-columnFilter type="text" field="date" display="menu"></p-columnFilter>
                             
                             </th>
@@ -59,13 +59,13 @@
 
                         <tr>
 
-                            <td> {{entry.name}} </td>
+                            <td> {{entry.person_name}} </td>
 
                             <td> {{entry.hour}} </td>
 
                             <td> {{entry.minute}} </td>
 
-                            <td> {{entry.date}} </td>
+                            <td> {{entry.day}} </td>
 
                             <td> {{entry.month}} </td>
 

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { Spoof } from 'src/app/Models/Models';
+import { Intruder } from 'src/app/Models/Models';
+import { BackendService } from 'src/app/Services/backend.service';
+import { environment } from 'src/environments/environment';
+
+const BackEndApi = environment.urlBackend;
 
 @Component({
   selector: 'app-intruders',
@@ -8,22 +12,50 @@ import { Spoof } from 'src/app/Models/Models';
 })
 export class IntrudersComponent {
 
-  spoofs: Spoof[];
+  intruders: Intruder[];
 
-  constructor(){
+  visible: boolean;
 
-    this.spoofs = []
+  currentKey:string;
+
+  constructor(private backend:BackendService){
+
+    this.intruders = []
+
+    this.visible = false
+
+    this.currentKey = ""
 
   }
 
   ngOnInit(){
 
-    this.spoofs.push(new Spoof(1,45,31,3,2001, "IHDNSKAOPAOWJS"));
-    this.spoofs.push(new Spoof(21,45,25,7,1990, "AISNDAISNDOASDA"));
-    this.spoofs.push(new Spoof(21,45,25,7,1990, "ASDASDASDASDEDEQ"));
-    this.spoofs.push(new Spoof(21,45,25,7,1990, "ASDASDASDASDASDAS"));
-    this.spoofs.push(new Spoof(21,45,25,7,1990, "ASDASDASDASDASDASD"));
+    this.backend.getIntruders().subscribe(response => {
+
+      if(response.message == "Successfully retrived") {
+
+        this.intruders = response.intruders!
+
+      }
+
+    })
 
   }
+
+  displayImage(){
+    
+    return BackEndApi + "/images/pipeImage/" + this.currentKey
+    
+  }
+
+  showPopUp(key:string){
+
+    this.currentKey = key
+
+    this.visible = true;
+
+  }
+
+
 
 }

@@ -13,11 +13,14 @@ import { BackendService } from 'src/app/Services/backend.service';
 export class RegisterAuthorizedComponent {
   @ViewChild('fileUpload') fileUpload: FileUpload | undefined;
   messages: Message[] ;
+  progressBarVisible: boolean;
   
   
   constructor(private backend: BackendService){
     
     this.messages = []
+
+    this.progressBarVisible = false
     
   }
   
@@ -34,6 +37,8 @@ export class RegisterAuthorizedComponent {
   }
   
   uploadFiles(event:any) {
+
+    this.progressBarVisible = true
     
     const nameInput = document.getElementById('name') as HTMLInputElement;
     
@@ -55,6 +60,8 @@ export class RegisterAuthorizedComponent {
 
                 if(updateresponse.message == "Successfull") {
 
+                  this.progressBarVisible = false
+
                   this.messages = [{ severity: 'success', detail: 'Files uploaded.' }];
 
                   nameInput.value = ""
@@ -63,6 +70,8 @@ export class RegisterAuthorizedComponent {
 
                 } else {
 
+                  this.progressBarVisible = false
+
                   this.messages = [{ severity: 'error', detail: updateresponse.message }];
 
                 }
@@ -70,6 +79,8 @@ export class RegisterAuthorizedComponent {
               })
 
             } else {
+
+              this.progressBarVisible = false
               
               this.messages = [{ severity: 'error', detail: response.message }];
 
@@ -83,11 +94,15 @@ export class RegisterAuthorizedComponent {
         
       } else {
 
+        this.progressBarVisible = false
+
         this.messages = [{ severity: 'warn', detail: 'The name should follow the pattern: BruceWayne \n ' }];
 
       }
 
     } else {
+
+      this.progressBarVisible = false
       
       this.messages = [{ severity: 'warn', detail: 'Name field is empty. Please enter a name.' }];
       

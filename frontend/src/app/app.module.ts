@@ -25,6 +25,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { ReviewPicturesComponent } from './Components/review-pictures/review-pictures.component';
 import { DataViewModule } from 'primeng/dataview';
+import { DialogModule } from 'primeng/dialog';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { DataViewModule } from 'primeng/dataview';
     ReactiveFormsModule,
     CarouselModule,
     TagModule,
-    DataViewModule
+    DataViewModule,
+    DialogModule,
+    ProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

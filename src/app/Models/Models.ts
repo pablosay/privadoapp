@@ -5,7 +5,7 @@ export class Entry {
     date: number;
     month: number;
     year: number;
-    name: string;
+    person_name: string;
 
     constructor(hour: number,minute: number , date: number, month:number, year: number, name: string){
 
@@ -14,29 +14,31 @@ export class Entry {
         this.date = date
         this.month = month
         this.year = year
-        this.name = name
+        this.person_name = name
 
     }
 
 }
 
-export class Spoof {
+export class Intruder {
 
     hour:number;
     minute:number;
     date: number;
     month: number;
     year: number;
-    pictureKey: string;
+    person_name:string;
+    image: string;
 
-    constructor(hour: number,minute: number , date: number, month:number, year: number, pictureKey: string){
+    constructor(hour: number,minute: number , date: number, month:number, year: number, person_name:string, image: string){
 
         this.hour = hour
         this.minute = minute
         this.date = date
         this.month = month
         this.year = year
-        this.pictureKey = pictureKey
+        this.person_name = person_name
+        this.image = image
 
     }
 

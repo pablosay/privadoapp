@@ -11,24 +11,21 @@
     width: 100%;
 }
 
-@font-face {
-    font-family: 'quicksand';
-    src: url('./../src/assets/Fonts/Quicksand-VariableFont_wght.ttf');
+.p-hidden-accessible {
+
+    display: none;
+
 }
 
 @font-face {
-    font-family: 'slabo';
-    src: url('./../src/assets/Fonts/Slabo27px-Regular.ttf');
+    font-family: 'merriweather';
+    src: url('./../src/assets/Fonts/Merriweather-Light.ttf');
 }
 
-@font-face {
-    font-family: 'roboto';
-    src: url('./../src/assets/Fonts/RobotoSlab-VariableFont_wght.ttf');
-}
 
 
 * {
 
-    font-family: 'quicksand';
+    font-family: 'merriweather';
     font-weight: bold;
 }

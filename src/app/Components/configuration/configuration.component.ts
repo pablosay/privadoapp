@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 
 export class ConfigurationComponent {
+
+  progressBarVisible: boolean;
   
   updateIpForm: FormGroup;
   
@@ -28,9 +30,13 @@ export class ConfigurationComponent {
   currentStartVigilanceTime: string;
   currentEndVigilanceTime: string;
   currentIp:string;
+  currentStatus:string;
   
   constructor(private fb: FormBuilder, private backend: BackendService, private shareauthoperson: ShareAuthoPersonInfoService, private router: Router){
+
+    this.progressBarVisible = false
     
+    this.currentStatus = "active"
     this.currentPhoneNumber = ""
     this.currentStartVigilanceTime = ""
     this.currentEndVigilanceTime = ""
@@ -116,6 +122,16 @@ export class ConfigurationComponent {
       }
       
     })
+
+    this.backend.getDeviceStatus().subscribe(response => {
+
+      if(response.message == "Successfully obtained") {
+
+        this.currentStatus = response.status!
+
+      } 
+
+    })
     
   }
   
@@ -141,14 +157,11 @@ export class ConfigurationComponent {
       
     })
     
-    
-    
-    
-    
-    
   }
   
   removeName(id: number){
+
+    this.progressBarVisible = true
     
     this.backend.deleteAuthorizedPerson(id).subscribe(response => {
       
@@ -183,6 +196,8 @@ export class ConfigurationComponent {
         this.messages = [{ severity: 'error', detail: response.message }];
 
       }
+
+      this.progressBarVisible = false
       
     });
     
@@ -196,11 +211,11 @@ export class ConfigurationComponent {
     
     let end = String(this.updateIntervalForm.controls['end'].value)
     
-    if(this.validateTimeRange(start, end)){
+    if(this.validateTimeRange(start, end) && start != end){
       
       this.backend.updateVigilanceTimeInterval(start, end).subscribe(response => {
         
-        if(response.message == "Successfully updated") {
+        if(response.message == "Successfully updated time interval") {
           
           this.currentStartVigilanceTime = start
           
@@ -280,6 +295,20 @@ export class ConfigurationComponent {
     this.shareauthoperson.setAuthorizedPerson(person);
 
     this.router.navigateByUrl('/main/review-pictures')
+
+  }
+
+  activateDevice() {
+
+    this.backend.setDeviceStatus().subscribe(response => {
+
+      if(response.message == "Successfully updated") {
+
+        this.currentStatus = "active"
+
+      }
+
+    })
 
   }
   

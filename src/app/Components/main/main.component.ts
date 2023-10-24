@@ -51,7 +51,7 @@ export class MainComponent {
         icon: 'pi pi-fw pi-sign-out',
         command: ()=> {
 
-          let refreshToken = sessionStorage.getItem("refreshToken") || ""
+          let refreshToken = sessionStorage.getItem('refreshToken') || ""
 
           if(refreshToken == "") {
 
@@ -63,9 +63,7 @@ export class MainComponent {
 
             if(response.message == "Logged out"){
 
-              sessionStorage.removeItem('token');
-
-              sessionStorage.removeItem('refreshToken');
+              sessionStorage.clear();
 
               this.router.navigateByUrl("")
 

@@ -1,4 +1,4 @@
-import { AuthorizedPerson, ImageInformation } from "./Models";
+import { AuthorizedPerson, ImageInformation, Entry, Intruder } from "./Models";
 
 export class Response {
 
@@ -34,6 +34,20 @@ export class DeleteResponse extends Response {
     constructor(message:string) {
 
         super(message)
+
+    }
+
+}
+
+export class GetStatusResponse extends Response {
+
+    status?:string;
+
+    constructor(message:string, status?:string) {
+
+        super(message)
+
+        this.status = status
 
     }
 
@@ -123,6 +137,34 @@ export class RequestsOptionalTokens extends PostResponse {
         this.authorizationToken = authorizationToken
         this.refreshToken = refreshToken
         
+    }
+
+}
+
+export class RequestEntriesResponse extends Response{
+
+    entries?: Entry[]
+
+    constructor(message:string, entries?: Entry[]) {
+
+        super(message)
+
+        this.entries = entries
+
+    }
+
+}
+
+export class RequestIntrudersResponse extends Response{
+
+    intruders?: Intruder[]
+
+    constructor(message:string, intruders?: Intruder[]) {
+
+        super(message)
+
+        this.intruders = intruders
+
     }
 
 }

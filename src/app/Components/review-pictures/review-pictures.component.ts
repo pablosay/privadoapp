@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { FileUpload } from 'primeng/fileupload';
 import { AuthorizedPerson, ImageInformation } from 'src/app/Models/Models';
 import { BackendService } from 'src/app/Services/backend.service';
 import { ShareAuthoPersonInfoService } from 'src/app/Services/share-autho-person-info.service';
@@ -19,6 +20,10 @@ const BackEndApi = environment.urlBackend;
 
 
 export class ReviewPicturesComponent {
+
+  @ViewChild('fileUpload') fileUpload: FileUpload | undefined;
+
+  progressBarVisible: boolean;
   
   authorizedPerson: AuthorizedPerson | undefined;
   
@@ -29,6 +34,8 @@ export class ReviewPicturesComponent {
   
   
   constructor(private shareauthoperson: ShareAuthoPersonInfoService, private router: Router, private backend:BackendService, private sanitizer: DomSanitizer){
+
+    this.progressBarVisible = false
     
     this.messages = []
     
@@ -77,9 +84,11 @@ export class ReviewPicturesComponent {
   }
   
   deleteImage(id: number, key: string) {
+
+    this.progressBarVisible = true
     
     this.backend.deleteImageFromAuthorizedPerson(id, key).subscribe(response => {
-      
+
       if(response.message == "Successfully deleted") {
         
         const indexToRemove = this.images!.findIndex((item) => item.id === id);
@@ -91,6 +100,8 @@ export class ReviewPicturesComponent {
           this.backend.updateEmbeddingsNotification().subscribe(notificationresponse => {
 
             if(notificationresponse.message == "Successfull") {
+
+              
 
               console.log("Embeddings actualizados")
 
@@ -111,24 +122,30 @@ export class ReviewPicturesComponent {
         this.messages = [{ severity: 'error', detail: response.message }]
         
       }
+
+      this.progressBarVisible = false
       
     })
     
   }
   
   uploadFiles(event:any) {
+
+    this.progressBarVisible = true
     
     let files = event.files
 
-
-    
     this.convertFilesToBase64(files).subscribe(base64images => {
       
       this.backend.uploadNewImageFromAuthorizedUser(this.authorizedPerson!.id, base64images).subscribe( response => {
         
         if(response.message == "Successfully uploaded") {
+
+          this.progressBarVisible = false
           
           this.messages = [{ severity: 'success', detail: 'Files uploaded.' }];
+
+          this.fileUpload!.clear()
 
           this.backend.getImagesFromAuthorizedPerson(this.authorizedPerson!.id).subscribe(responseGetImages => {
           
@@ -142,6 +159,8 @@ export class ReviewPicturesComponent {
 
                   console.log("Notification made")
 
+                  
+
                 } else {
 
                   console.log(notificationresponse.message)
@@ -152,6 +171,8 @@ export class ReviewPicturesComponent {
               
             } else {
 
+              this.progressBarVisible = false
+
               this.messages = [{ severity: 'error', detail: response.message }];
 
             }
@@ -159,14 +180,19 @@ export class ReviewPicturesComponent {
           })
           
         } else {
+
+          this.progressBarVisible = false
           
           this.messages = [{ severity: 'error', detail: response.message }];
+
           
         }
         
       })
       
     });
+
+    
     
     
   }

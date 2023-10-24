@@ -40,9 +40,13 @@ export class LoginComponent {
 
       if(response.message == "Logged in") {
 
-        sessionStorage.setItem("token", response.authorizationToken!)
+        let authorization:string = response.authorizationToken!
 
-        sessionStorage.setItem("refreshToken", response.refreshToken!)
+        let refresh:string = response.refreshToken!
+
+        sessionStorage.setItem('authorizationToken', authorization)
+
+        sessionStorage.setItem('refreshToken', refresh)
 
         this.router.navigateByUrl("/main/welcome")
 

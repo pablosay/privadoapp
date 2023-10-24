@@ -6,11 +6,27 @@
 
             <div class="card">
 
-                <p-table #dt1 [value]="spoofs" [paginator]="true" [rows]="10" styleClass="border-round">
+                <p-table #dt1 [value]="intruders" [paginator]="true" [rows]="10" styleClass="border-round" [globalFilterFields]="['person_name']">
+
+                    <ng-template pTemplate="caption">
+
+                        <div class="flex">
+                            
+                            <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Search by name" />
+
+                        </div>
+
+                    </ng-template>
 
                     <ng-template pTemplate="header">
 
                         <tr>
+
+                            <th>
+
+                                Name
+
+                            </th>
                             
                             <th> 
                                 Hour 
@@ -24,7 +40,7 @@
                             </th>
 
                             <th> 
-                                Date
+                                Day
                                 <p-columnFilter type="text" field="date" display="menu"></p-columnFilter>
                             
                             </th>
@@ -51,21 +67,36 @@
 
                     </ng-template>
 
-                    <ng-template pTemplate="body" let-entry>
+                    <ng-template pTemplate="body" let-intruder>
 
                         <tr>
 
-                            <td> {{entry.hour}} </td>
+                            <td> {{intruder.person_name}} </td>
 
-                            <td> {{entry.minute}} </td>
+                            <td> {{intruder.hour}} </td>
 
-                            <td> {{entry.date}} </td>
+                            <td> {{intruder.minute}} </td>
 
-                            <td> {{entry.month}} </td>
+                            <td> {{intruder.day}} </td>
 
-                            <td> {{entry.year}} </td>
+                            <td> {{intruder.month}} </td>
 
-                            <td> <p-button icon="pi pi-eye" styleClass="p-button-success ml-2" label="View"></p-button>  </td>
+                            <td> {{intruder.year}} </td>
+
+                            <td>
+                                
+                                <p-button icon="pi pi-eye" styleClass="p-button-success ml-2" label="View" (click) = "showPopUp(intruder.image)"></p-button>  
+
+                                <p-dialog header="Intruder picture" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+
+                                    <p class="m-0" *ngIf = "visible">
+
+                                        <img [src] = "displayImage()" width="100%" height="100%"> 
+
+                                    </p>
+                                </p-dialog>
+
+                            </td>
 
                         </tr>
 

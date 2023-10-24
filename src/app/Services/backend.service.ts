@@ -2,15 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { RequestById , NewAuthorizedPerson, NewIp, NewTimeInterval, NewWhatsAppNumber, UploadSingleImage, LogIn, RequestByToken } from '../Models/Bodies';
-import { DeleteResponse, GetAuthorizedUsersResponse, GetImagesFromPersonResponse, GetProcessingServerIpResponse, GetVigilanceIntervalResponse, GetWhatsAppNumberResponse, RequestsOptionalTokens, PostResponse, PutResponse, Response} from '../Models/Responses';
+import { DeleteResponse, GetAuthorizedUsersResponse, GetImagesFromPersonResponse, GetProcessingServerIpResponse, GetVigilanceIntervalResponse, GetWhatsAppNumberResponse, RequestsOptionalTokens, PostResponse, PutResponse, Response, RequestEntriesResponse, RequestIntrudersResponse, GetStatusResponse} from '../Models/Responses';
 
 const BackEndApi = environment.urlBackend;
 
 const httpOptions = {
 
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    
+    'Content-Type': 'application/json',
+    'authorization' : `Bearer ${sessionStorage.getItem('authorizationToken')}`
+
+  })
 
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -97,7 +103,7 @@ export class BackendService {
 
     let options = {
 
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'authorization' : `Bearer ${sessionStorage.getItem('authorizationToken')}` }),
       body: new RequestById(id)
 
     } 
@@ -133,13 +139,24 @@ export class BackendService {
 
   }
 
+/** ------ Desde aca      */
   logIn(device:string, password:string) {
 
     let url = BackEndApi + "/session/logIn"
 
     let body = new LogIn(device, password);
 
-    return this.http.post<RequestsOptionalTokens>(url, body, httpOptions)
+    const httpOptionsAuthorization = {
+
+      headers: new HttpHeaders({
+    
+        'Content-Type': 'application/json',
+    
+      })
+    
+    }
+
+    return this.http.post<RequestsOptionalTokens>(url, body, httpOptionsAuthorization)
 
   }
 
@@ -149,7 +166,17 @@ export class BackendService {
 
     let body = new RequestByToken(refreshToken)
 
-    return this.http.post<PostResponse>(url, body, httpOptions)
+    const httpOptionsAuthorization = {
+
+      headers: new HttpHeaders({
+    
+        'Content-Type': 'application/json',
+    
+      })
+    
+    }
+
+    return this.http.post<PostResponse>(url, body, httpOptionsAuthorization)
 
   }
 
@@ -157,22 +184,9 @@ export class BackendService {
 
     let url = BackEndApi + "/session/verify"
 
-    const httpOptionsAuthorization = {
-
-      headers: new HttpHeaders({
-    
-        'Content-Type': 'application/json',
-        
-        'authorization' : `Bearer ${sessionStorage.getItem('token')}`
-    
-      })
-    
-    }
-
-    return this.http.get<Response>(url, httpOptionsAuthorization)
+    return this.http.get<Response>(url, httpOptions)
 
   }
-
 
   refreshToken(refreshtoken:string) {
 
@@ -180,15 +194,59 @@ export class BackendService {
 
     let body = new RequestByToken(refreshtoken)
 
-    return this.http.post<RequestsOptionalTokens>(url, body, httpOptions)
+    const httpOptionsAuthorization = {
+
+      headers: new HttpHeaders({
+    
+        'Content-Type': 'application/json',
+    
+      })
+    
+    }
+
+    return this.http.post<RequestsOptionalTokens>(url, body, httpOptionsAuthorization)
 
   }
-
+/** ------- hasta aca      */
   updateEmbeddingsNotification() {
 
     let url = BackEndApi + "/embeddings/update"
 
-    return this.http.put<PutResponse>(url,httpOptions)
+    console.log(httpOptions)
+
+    return this.http.put<PutResponse>(url,null, httpOptions)
+
+  }
+
+  getEntries(){
+
+    let url = BackEndApi + "/log/entries"
+
+    return this.http.get<RequestEntriesResponse>(url, httpOptions)
+
+  }
+
+  getIntruders(){
+
+    let url = BackEndApi + "/log/intruders"
+
+    return this.http.get<RequestIntrudersResponse>(url, httpOptions)
+
+  }
+
+  getDeviceStatus(){
+
+    let url = BackEndApi + "/rpiconfig/status"
+
+    return this.http.get<GetStatusResponse>(url, httpOptions)
+
+  }
+
+  setDeviceStatus(){
+
+    let url = BackEndApi + "/rpiconfig/status/activate"
+
+    return this.http.put<PutResponse>(url,null ,httpOptions)
 
   }
 

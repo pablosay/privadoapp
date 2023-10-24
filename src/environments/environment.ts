@@ -1,5 +1,5 @@
 export const environment = {
 
-    urlBackend: "http://localhost:1300"
+    urlBackend: "https://privadoapp-production.up.railway.app"
 
 };

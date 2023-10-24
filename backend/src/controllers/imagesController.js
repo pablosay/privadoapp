@@ -1,6 +1,5 @@
 const { getFileStream } = require('../../config/s3')
 
-
 exports.getPipedImage = async (req, res) => {
     
     const key = req.params.key

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const generateAccessToken = (deviceName) => {
     
-    return jwt.sign({device: deviceName}, process.env.JWT_TOKEN_KEY, {expiresIn: "60000"})
+    return jwt.sign({device: deviceName}, process.env.JWT_TOKEN_KEY, {expiresIn: '24h'})
     
 }
 
@@ -12,7 +12,7 @@ const generateRefreshToken = (deviceName) => {
     
 }
 
-const verifyToken = (req, res, next) => {
+const verifyToken  =  (req, res, next) => {
     
     const authHeader = req.headers.authorization;
     
@@ -40,8 +40,6 @@ const verifyToken = (req, res, next) => {
 
             
         }
-        
-        
         
     } else {
         

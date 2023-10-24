@@ -53,7 +53,7 @@ exports.login =  async (req, res) =>{
 
     } catch (error) {
 
-        res.json({"message": "Error"})
+        res.json({"message": "Device name error"})
         
     }
 
@@ -97,15 +97,13 @@ exports.refreshToken = async (req, res) => {
 
         refreshTokens = refreshTokens.filter((token) => token != refreshToken);
 
-        console.log(decoded)
-
         const newAccessToken = generateAccessToken(decoded.device);
 
         const newRefreshedToken = generateRefreshToken(decoded.device);
 
         refreshTokens.push(newRefreshedToken);
 
-        res.json({"message": "Token refreshed", "accessToken": newAccessToken, "refreshToken": newRefreshedToken });
+        res.json({"message": "Token refreshed", "authorizationToken": newAccessToken, "refreshToken": newRefreshedToken });
 
     });
 

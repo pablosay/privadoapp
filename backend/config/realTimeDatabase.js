@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 
-const serviceAccount = require('../env/serviceAccountKey.json');
+const serviceAccount = require('../env/rtdb-pt23-firebase-adminsdk-xkgtx-d9565b547b.json');
 
 admin.initializeApp({
 

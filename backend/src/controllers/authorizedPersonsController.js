@@ -29,7 +29,7 @@ exports.registerNewAuthorizedPerson = async (req, res) => {
                 
                 try {
                     
-                    const fastApiUrl = 'https://' + ip + ':1500/getEmbeddingsFromBase64Images';
+                    const fastApiUrl = ip + '/getEmbeddingsFromBase64Images';
                     
                     const agent = new https.Agent({ rejectUnauthorized: false });
                     
@@ -368,7 +368,7 @@ exports.uploadSingleImageFromAuthorizedPerson = async (req, res) => {
                 
                 try {
                     
-                    const fastApiUrl = 'https://' + ip + ':1500/getEmbeddingsFromBase64Images';
+                    const fastApiUrl =  ip + '/getEmbeddingsFromBase64Images';
                     
                     const agent = new https.Agent({ rejectUnauthorized: false });
                     

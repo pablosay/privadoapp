@@ -20,7 +20,7 @@ exports.updateEmbeddingsForProcessingServer = async (req, res) => {
             
             if(ip) {
                 
-                const url = 'https://' + ip + ':1500/updateEmbeddings';
+                const url =  ip + '/updateEmbeddings';
                 
                 const agent = new https.Agent({ rejectUnauthorized: false });
                 

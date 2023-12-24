@@ -27,6 +27,8 @@ import { ReviewPicturesComponent } from './Components/review-pictures/review-pic
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { PasswordComponent } from './Components/password/password.component';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     LogEntriesComponent,
     RegisterAuthorizedComponent,
     IntrudersComponent,
-    ReviewPicturesComponent
+    ReviewPicturesComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     TagModule,
     DataViewModule,
     DialogModule,
-    ProgressBarModule
+    ProgressBarModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]

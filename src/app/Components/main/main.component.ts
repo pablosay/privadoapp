@@ -42,9 +42,14 @@ export class MainComponent {
         routerLink: ['/main/logentries']
       },
       {
-        label: 'Intruders',
+        label: 'Presentation attacks',
         icon: 'pi pi-fw pi-ban',
         routerLink: ['/main/intruders']
+      },
+      {
+        label: 'Password',
+        icon: 'pi pi-fw pi-lock',
+        routerLink: ['/main/password']
       },
       {
         label: 'Log out',

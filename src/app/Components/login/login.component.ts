@@ -32,21 +32,23 @@ export class LoginComponent {
 
   tryLogin(){
 
-    let device = String(this.formLogin.controls['device'].value);
+    const device = String(this.formLogin.controls['device'].value);
 
-    let password = String(this.formLogin.controls['password'].value);
+    const password = String(this.formLogin.controls['password'].value);
 
     this.backend.logIn(device, password).subscribe(response => {
 
       if(response.message == "Logged in") {
 
-        let authorization:string = response.authorizationToken!
+        const authorization:string = response.authorizationToken!
 
-        let refresh:string = response.refreshToken!
+        const refresh:string = response.refreshToken!
 
         sessionStorage.setItem('authorizationToken', authorization)
 
         sessionStorage.setItem('refreshToken', refresh)
+
+        sessionStorage.setItem('device', device)
 
         this.router.navigateByUrl("/main/welcome")
 

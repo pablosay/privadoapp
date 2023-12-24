@@ -103,3 +103,23 @@ export class RequestByToken {
 
 
 }
+
+export class UpdatePassword {
+
+    device:string;
+
+    currentPassword: string;
+
+    newPassword: string;
+
+    constructor(device:string, currentPassword:string, newPassword:string){
+
+        this.device = device;
+
+        this.currentPassword = currentPassword;
+
+        this.newPassword = newPassword;
+
+    }
+
+}

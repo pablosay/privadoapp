@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { RequestById , NewAuthorizedPerson, NewIp, NewTimeInterval, NewWhatsAppNumber, UploadSingleImage, LogIn, RequestByToken } from '../Models/Bodies';
+import { RequestById , NewAuthorizedPerson, NewIp, NewTimeInterval, NewWhatsAppNumber, UploadSingleImage, LogIn, RequestByToken, UpdatePassword } from '../Models/Bodies';
 import { DeleteResponse, GetAuthorizedUsersResponse, GetImagesFromPersonResponse, GetProcessingServerIpResponse, GetVigilanceIntervalResponse, GetWhatsAppNumberResponse, RequestsOptionalTokens, PostResponse, PutResponse, Response, RequestEntriesResponse, RequestIntrudersResponse, GetStatusResponse} from '../Models/Responses';
 
 const BackEndApi = environment.urlBackend;
@@ -190,9 +190,9 @@ export class BackendService {
 
   refreshToken(refreshtoken:string) {
 
-    let url = BackEndApi + "/session/refreshToken"
+    const url = BackEndApi + "/session/refreshToken"
 
-    let body = new RequestByToken(refreshtoken)
+    const body = new RequestByToken(refreshtoken)
 
     const httpOptionsAuthorization = {
 
@@ -210,9 +210,7 @@ export class BackendService {
 /** ------- hasta aca      */
   updateEmbeddingsNotification() {
 
-    let url = BackEndApi + "/embeddings/update"
-
-    console.log(httpOptions)
+    const url = BackEndApi + "/embeddings/update"
 
     return this.http.put<PutResponse>(url,null, httpOptions)
 
@@ -220,7 +218,7 @@ export class BackendService {
 
   getEntries(){
 
-    let url = BackEndApi + "/log/entries"
+    const url = BackEndApi + "/log/entries"
 
     return this.http.get<RequestEntriesResponse>(url, httpOptions)
 
@@ -228,7 +226,7 @@ export class BackendService {
 
   getIntruders(){
 
-    let url = BackEndApi + "/log/intruders"
+    const url = BackEndApi + "/log/intruders"
 
     return this.http.get<RequestIntrudersResponse>(url, httpOptions)
 
@@ -236,7 +234,7 @@ export class BackendService {
 
   getDeviceStatus(){
 
-    let url = BackEndApi + "/rpiconfig/status"
+    const url = BackEndApi + "/rpiconfig/status"
 
     return this.http.get<GetStatusResponse>(url, httpOptions)
 
@@ -244,9 +242,20 @@ export class BackendService {
 
   setDeviceStatus(){
 
-    let url = BackEndApi + "/rpiconfig/status/activate"
+    const url = BackEndApi + "/rpiconfig/status/activate"
 
     return this.http.put<PutResponse>(url,null ,httpOptions)
+
+  }
+
+  updatePassword(device:string, currentPassword:string, newPassword:string){
+
+    const url = BackEndApi + "/session/updatePassword"
+
+    const body = new UpdatePassword(device, currentPassword, newPassword)
+
+    return this.http.put<PutResponse>(url, body, httpOptions)
+
 
   }
 

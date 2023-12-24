@@ -11,7 +11,7 @@ const con = new Pool({
   host:  process.env.HOST_DB,
   database: process.env.DB,
   password: process.env.PASSWORD_DB,
-  port: process.env.PORT_DB,
+  port: process.env.PORT_clDB,
 
 });
 
@@ -34,7 +34,12 @@ module.exports = con
  * 
  * 
  * 
- * CREATE TABLE authorized_persons (
+ * 
+ * 
+
+CREATE 
+
+CREATE TABLE authorized_persons (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE
   );

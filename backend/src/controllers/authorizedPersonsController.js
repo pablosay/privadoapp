@@ -61,8 +61,6 @@ exports.registerNewAuthorizedPerson = async (req, res) => {
                                     
                                     for (let index = 0; index < arrayOfStrings.length; index++) {
                                         
-                                        console.log("Trying image and embedding: ", index)
-                                        
                                         const image = images[index];
                                         
                                         const embedding = arrayOfStrings[index];

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 const generateAccessToken = (deviceName) => {
-    
+
     return jwt.sign({device: deviceName}, process.env.JWT_TOKEN_KEY, {expiresIn: '24h'})
     
 }

@@ -9,6 +9,7 @@ import { IntrudersComponent } from './Components/intruders/intruders.component';
 import { WelcomeComponent } from './Components/welcome/welcome.component';
 import { ReviewPicturesComponent } from './Components/review-pictures/review-pictures.component';
 import { authorizationGuard } from './Guards/authorization.guard';
+import { PasswordComponent } from './Components/password/password.component';
 
 
 
@@ -23,7 +24,8 @@ const routes: Routes = [
     {path: 'register', component: RegisterAuthorizedComponent},
     {path: 'intruders', component: IntrudersComponent},
     {path: 'welcome', component: WelcomeComponent},
-    {path: 'review-pictures', component: ReviewPicturesComponent}
+    {path: 'review-pictures', component: ReviewPicturesComponent},
+    {path: 'password', component: PasswordComponent}
 
   ]}
 ];

@@ -11,8 +11,6 @@ export const authorizationGuard: CanActivateFn = (route, state) => {
 
   const router: Router = inject(Router)
 
-  console.log("Token: ", sessionStorage.getItem('authorizationToken'))
-
   return backend.verifyToken().pipe(mergeMap( (response:Response) => {
 
     if(response.message == "Token accepted") {

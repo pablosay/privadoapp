@@ -29,6 +29,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { PasswordComponent } from './Components/password/password.component';
 import { PasswordModule } from 'primeng/password';
+import { ToastModule } from 'primeng/toast';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { PasswordModule } from 'primeng/password';
     DataViewModule,
     DialogModule,
     ProgressBarModule,
-    PasswordModule
+    PasswordModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,7 +16,17 @@
             
             <div class="text-center mb-5">
                 
-                <div class="text-900 text-2xl font-medium mb-3">Processing server IP</div>
+                <div class="text-900 text-2xl font-medium mb-3">
+
+                    Processing server IP
+
+                    <p-toast></p-toast>
+
+                    <button type="button" pButton pRipple icon="pi pi-info-circle" (click) = "showInfo('Set the IP address of the processing server. Only for development porpuses.')" class="p-button-info ml-2"></button>
+
+                </div>
+
+                
             </div>
 
             <div class="text-left">
@@ -45,7 +55,13 @@
             
             <div class="text-center mb-5">
                 
-                <div class="text-900 text-2xl font-medium mb-3"> Phone number </div>
+                <div class="text-900 text-2xl font-medium mb-3"> 
+
+                    Phone number
+
+                    <button type="button" pButton pRipple icon="pi pi-info-circle" (click) = "showInfo('Set a WhatsApp number to receive notifications from the system.')" class="p-button-info ml-2"></button>
+
+                </div>
             </div>
 
             <div class="text-left">
@@ -79,7 +95,13 @@
             
                 <div class="text-center mb-5">
                     
-                    <div class="text-900 text-2xl font-medium mb-3"> Interval </div>
+                    <div class="text-900 text-2xl font-medium mb-3">
+
+                        Interval 
+
+                        <button type="button" pButton pRipple icon="pi pi-info-circle" (click) = "showInfo('Set the time interval in which the device will be blocked if there is a presentation attack.')" class="p-button-info ml-2"></button>
+                    
+                    </div>
                 </div>
     
                 <div class="text-left">

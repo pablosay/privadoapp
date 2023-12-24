@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Message } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import { Observable, forkJoin} from 'rxjs';
 import { ReplaySubject } from 'rxjs';
@@ -8,7 +9,8 @@ import { BackendService } from 'src/app/Services/backend.service';
 @Component({
   selector: 'app-register-authorized',
   templateUrl: './register-authorized.component.html',
-  styleUrls: ['./register-authorized.component.scss']
+  styleUrls: ['./register-authorized.component.scss'],
+  providers: [MessageService]
 })
 export class RegisterAuthorizedComponent {
   @ViewChild('fileUpload') fileUpload: FileUpload | undefined;
@@ -16,7 +18,7 @@ export class RegisterAuthorizedComponent {
   progressBarVisible: boolean;
   
   
-  constructor(private backend: BackendService){
+  constructor(private backend: BackendService, private messageService: MessageService){
     
     this.messages = []
 
@@ -149,6 +151,12 @@ export class RegisterAuthorizedComponent {
     
     return forkJoin(base64Array);
     
+  }
+
+  showInfo(){
+
+    this.messageService.add({ severity: 'info', detail: 'Upload up to 6 images containing the face of the new auhtorized person.' });
+
   }
   
   

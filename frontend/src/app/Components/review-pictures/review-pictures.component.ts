@@ -9,13 +9,15 @@ import { environment } from 'src/environments/environment';
 import { Message } from 'primeng/api';
 import { Observable, forkJoin } from 'rxjs';
 import { ReplaySubject } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 const BackEndApi = environment.urlBackend;
 
 @Component({
   selector: 'app-review-pictures',
   templateUrl: './review-pictures.component.html',
-  styleUrls: ['./review-pictures.component.scss']
+  styleUrls: ['./review-pictures.component.scss'],
+  providers: [MessageService]
 })
 
 
@@ -27,17 +29,37 @@ export class ReviewPicturesComponent {
   
   authorizedPerson: AuthorizedPerson | undefined;
   
-  images: ImageInformation[] | undefined;
+  images!: ImageInformation[];
   
   messages: Message[] ;
+
+  responsiveOptions: any[] | undefined;
   
   
   
-  constructor(private shareauthoperson: ShareAuthoPersonInfoService, private router: Router, private backend:BackendService, private sanitizer: DomSanitizer){
+  constructor(private shareauthoperson: ShareAuthoPersonInfoService, private router: Router, private backend:BackendService, private messageService: MessageService){
 
     this.progressBarVisible = false
     
     this.messages = []
+
+    this.responsiveOptions = [
+      {
+          breakpoint: '1199px',
+          numVisible: 1,
+          numScroll: 1
+      },
+      {
+          breakpoint: '991px',
+          numVisible: 2,
+          numScroll: 1
+      },
+      {
+          breakpoint: '767px',
+          numVisible: 1,
+          numScroll: 1
+      }
+    ];
     
     this.shareauthoperson.getAuthorizedPerson().subscribe(authoperson => {
       
@@ -237,6 +259,13 @@ export class ReviewPicturesComponent {
     
     return forkJoin(base64Array);
     
+  }
+
+  showInfo(){
+
+    this.messageService.add({ severity: 'info', detail: 'You can still upload more pictures.' });
+
+
   }
   
   

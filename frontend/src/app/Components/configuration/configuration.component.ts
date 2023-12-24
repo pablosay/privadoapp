@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthorizedPerson } from 'src/app/Models/Models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { BackendService } from 'src/app/Services/backend.service';
 import { ShareAuthoPersonInfoService } from 'src/app/Services/share-autho-person-info.service';
 import { Router } from '@angular/router';
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.scss']
+  styleUrls: ['./configuration.component.scss'],
+  providers: [MessageService]
 })
 
 export class ConfigurationComponent {
@@ -32,7 +34,7 @@ export class ConfigurationComponent {
   currentIp:string;
   currentStatus:string;
   
-  constructor(private fb: FormBuilder, private backend: BackendService, private shareauthoperson: ShareAuthoPersonInfoService, private router: Router){
+  constructor(private fb: FormBuilder, private backend: BackendService, private shareauthoperson: ShareAuthoPersonInfoService, private router: Router, private messageService: MessageService){
 
     this.progressBarVisible = false
     
@@ -309,6 +311,13 @@ export class ConfigurationComponent {
       }
 
     })
+
+  }
+
+  showInfo(message:string){
+
+    this.messageService.add({ severity: 'info', detail: message });
+
 
   }
   

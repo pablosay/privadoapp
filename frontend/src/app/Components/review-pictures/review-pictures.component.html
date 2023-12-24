@@ -1,14 +1,16 @@
 <p-messages [(value)]="messages" [enableService]="false" [closable]="true" [hideTransitionOptions]="'500ms'" [showTransitionOptions]="'500ms'"></p-messages>
 
-<div class = "w-full mt-4 ml-4"> 
 
-    <p-button icon="pi pi-arrow-circle-left" label="Return" styleClass="p-button-help p-button-raised" (click) = "return()" ></p-button>
-
-</div>
 
 
 
 <div class = "flex flex-column align-items-center ml-2 mr-2 mt-2 mb-2 min-h-screen max-h-screen overflow-auto w-full">
+
+    <div class = "w-full mt-4 ml-4"> 
+
+        <p-button icon="pi pi-arrow-circle-left" label="Return" styleClass="p-button-help p-button-raised" (click) = "return()" ></p-button>
+    
+    </div>
 
     <div class = "w-full mb-2">
 
@@ -16,14 +18,18 @@
 
     </div>
 
-    <div class = "w-6 mb-3 surface-0 flex-column flex align-items-center border-round"  *ngIf = " images!.length < 6 ">
+    <div class = "w-6 mb-3 surface-0 flex-column flex align-items-center shadow-4 border-round"  *ngIf = " images!.length < 6 ">
 
         <div class=" mb-4 mt-2 card flex flex-column justify-content-center align-items-center ">
 
-            <div class = "flex-column">
+            <div class=" text-2xl font-medium mb-3 mt-2" style="font-family: 'quicksand';">
+                
+                <label class="mr-2"> Upload files </label>
 
-                <h2> Max number of files are 6.</h2>
+                <p-toast></p-toast>
 
+                <button type="button" pButton pRipple icon="pi pi-info-circle" (click) = "showInfo()" class="p-button-info"></button>
+            
             </div>
 
             <p-fileUpload #fileUpload name="myfile[]"  [multiple]="true" accept="image/*" [maxFileSize]="100000000" [fileLimit]="6 - images!.length" [customUpload]="true" (uploadHandler)="uploadFiles($event)" class="mb-2">
@@ -47,31 +53,37 @@
         </div>
 
     </div>
+    
 
-    <div class = "flex-column flex align-items-center w-full">
-        
-        <div class = "flex surface-0 w-3 shadow-3 align-items-center flex-column mb-4 border-round" *ngFor="let image of images">
+    <p-carousel [value]="images" [circular]="false" [responsiveOptions]="responsiveOptions" [numVisible]="2" [numScroll]="2" [autoplayInterval] = "5000" [showIndicators] = "false" class="mb-3">
 
-            <div class = "mb-3 mt-3 align-items-center flex justify-content-center">
+        <ng-template let-image pTemplate="item">
 
-                <img class="ml-2 mr-2" [src] = "displayImage(image.image_data)" width="90%" height="90%" style="border-radius: 1%;"> 
+            <div class="border-round shadow-4 surface-0 m-2 text-center py-5 px-3">
 
+                <div class="mb-3">
+
+                    <img [src] = "displayImage(image.image_data)" class="w-6 shadow-2" />
+
+                </div>
+
+                <div>
+
+                    <p-button icon="pi pi-trash" styleClass="p-button-danger w-full " label="Delete" (click) = "deleteImage(image.id, image.image_data)"></p-button>
+                    
+                </div>
             </div>
+        </ng-template>
+    </p-carousel>
 
-            <div class = "w-full mb-3 pl-3 pr-3">
-
-                <p-button icon="pi pi-trash" styleClass="p-button-danger w-full " label="Delete" (click) = "deleteImage(image.id, image.image_data)"></p-button>
-
-            </div>   
-
-        </div>
+    
 
 
-    </div>
 
     
 
 </div>
+
 
 
 <router-outlet> </router-outlet>
